@@ -1,5 +1,4 @@
 import { generadorToken, isValidPassword, createHash } from '../utils.js';
-import { UserModel } from '../models/user.model.js';
 import Services from './services.js';
 import userSchema from '../validators/userValidator.js';
 import UserRepository from '../repositories/user.repository.js';

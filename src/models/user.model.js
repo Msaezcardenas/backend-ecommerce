@@ -20,7 +20,7 @@ const userSchema = new Schema({
   },
   age: {
     type: Number,
-    require: true,
+    require: false,
   },
   password: {
     type: String,

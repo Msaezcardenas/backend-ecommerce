@@ -8,6 +8,7 @@ export default class BaseController {
   getAll = async (req, res, next) => {
     try {
       const data = await this.service.getAll();
+      req.logger.warning('Esto es un warn de prueba');
       createResponse(res, 200, data);
     } catch (error) {
       next(error);

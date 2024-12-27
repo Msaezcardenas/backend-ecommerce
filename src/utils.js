@@ -1,12 +1,12 @@
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { v4 } from 'uuid';
 
-export const createHash = (pass) => bcrypt.hashSync(pass, bcrypt.genSaltSync(10)); // $salt.hash
+export const createHash = (pass) => bcryptjs.hashSync(pass, bcryptjs.genSaltSync(10)); // $salt.hash
 
-export const isValidPassword = (user, pass) => bcrypt.compareSync(pass, user.password); // user.password -> es la contraseña de la bbdd
+export const isValidPassword = (user, pass) => bcryptjs.compareSync(pass, user.password); // user.password -> es la contraseña de la bbdd
 
 const __filename = fileURLToPath(import.meta.url);
 
