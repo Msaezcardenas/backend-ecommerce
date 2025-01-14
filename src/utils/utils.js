@@ -11,6 +11,7 @@ export const isValidPassword = (user, pass) => bcryptjs.compareSync(pass, user.p
 const __filename = fileURLToPath(import.meta.url);
 
 export const __dirname = dirname(__filename);
+export default __dirname;
 
 export const getJWTCookie = (req) => {
   let token = null;

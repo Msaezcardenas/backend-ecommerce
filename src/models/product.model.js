@@ -8,6 +8,8 @@ const productSchema = new Schema({
   price: Number,
   status: Boolean,
   category: String,
+  unitType: String,
+  image: String,
 });
 
 export const ProductModel = model('products', productSchema);

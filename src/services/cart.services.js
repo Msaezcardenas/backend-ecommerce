@@ -3,7 +3,7 @@ import CartRepostory from '../repositories/cart.repository.js';
 import ProductRepository from '../repositories/product.repository.js';
 import TicketService from './ticket.services.js';
 import { transport } from '../../servicesEmail.js';
-import { __dirname } from '../utils.js';
+import { __dirname } from '../utils/utils.js';
 
 const productRepository = new ProductRepository();
 const ticketService = new TicketService();
@@ -88,10 +88,7 @@ export default class CartService extends Services {
 
       // Generar ticket si hay productos comprados
       if (productsToPurchase.length > 0) {
-        const totalAmount = productsToPurchase.reduce(
-          (acc, item) => acc + item.price * item.quantity,
-          0,
-        );
+        const totalAmount = productsToPurchase.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
         // Llamar al servicio de tickets para crear el ticket
         const ticket = await ticketService.createTicket({
@@ -100,9 +97,7 @@ export default class CartService extends Services {
         });
 
         // Filtrar los productos que no pudieron comprarse del carrito
-        cart.products = unavailableProducts.map((productId) =>
-          cart.products.find((item) => item.product._id.equals(productId)),
-        );
+        cart.products = unavailableProducts.map((productId) => cart.products.find((item) => item.product._id.equals(productId)));
 
         await this.sendMail(ticket);
 

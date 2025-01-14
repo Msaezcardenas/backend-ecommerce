@@ -1,6 +1,6 @@
 import passport from 'passport';
 import jwt, { ExtractJwt } from 'passport-jwt';
-import { getJWTCookie } from '../utils.js';
+import { getJWTCookie } from '../utils/utils.js';
 
 const JWTStrategy = jwt.Strategy;
 

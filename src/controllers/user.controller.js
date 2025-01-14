@@ -1,5 +1,5 @@
 import UserService from '../services/user.services.js';
-import { createResponse } from '../utils.js';
+import { createResponse } from '../utils/utils.js';
 import BaseController from './baseController.js';
 
 const userService = new UserService();

@@ -50,4 +50,12 @@ export default class BaseRepository {
       throw new Error(error);
     }
   }
+
+  async deleteAll() {
+    try {
+      return await this.model.deleteMany({});
+    } catch (error) {
+      throw new Error(error.message || 'Error deleting all records');
+    }
+  }
 }

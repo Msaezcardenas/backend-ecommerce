@@ -1,6 +1,6 @@
 import Services from './services.js';
 import TicketRepository from '../repositories/ticket.repository.js';
-import { generateUniqueCode } from '../utils.js';
+import { generateUniqueCode } from '../utils/utils.js';
 
 const ticketRepository = new TicketRepository();
 

@@ -1,5 +1,5 @@
 import CartService from '../services/cart.services.js';
-import { createResponse } from '../utils.js';
+import { createResponse } from '../utils/utils.js';
 import BaseController from './baseController.js';
 
 const cartService = new CartService();

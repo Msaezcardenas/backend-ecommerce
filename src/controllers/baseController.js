@@ -1,4 +1,4 @@
-import { createResponse } from '../utils.js';
+import { createResponse } from '../utils/utils.js';
 
 export default class BaseController {
   constructor(service) {
@@ -50,6 +50,16 @@ export default class BaseController {
     try {
       const { id } = req.params;
       const data = await this.service.delete(id);
+      if (!data) createResponse(res, 404, data);
+      else createResponse(res, 200, data);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  deleteAll = async (req, res, next) => {
+    try {
+      const data = await this.service.deleteAll();
       if (!data) createResponse(res, 404, data);
       else createResponse(res, 200, data);
     } catch (error) {

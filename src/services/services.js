@@ -42,4 +42,12 @@ export default class Services {
       throw new Error(error);
     }
   }
+
+  async deleteAll() {
+    try {
+      return await this.repository.deleteAll();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
