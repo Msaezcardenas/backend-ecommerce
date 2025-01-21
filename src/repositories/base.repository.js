@@ -4,58 +4,30 @@ export default class BaseRepository {
   }
 
   async getAll() {
-    try {
-      return await this.model.find({});
-    } catch (error) {
-      throw new Error(error);
-    }
+    return await this.model.find({});
   }
 
   async getById(id) {
-    try {
-      return await this.model.findById(id);
-    } catch (error) {
-      throw new Error(error);
-    }
+    return await this.model.findById(id);
   }
 
   async getByEmail(email) {
-    try {
-      return await this.model.findOne({ email }); // modelo es la conexion a la base de datos
-    } catch (error) {
-      throw new Error(error);
-    }
+    return await this.model.findOne({ email });
   }
 
   async create(obj) {
-    try {
-      return await this.model.create(obj);
-    } catch (error) {
-      throw new Error(error);
-    }
+    return await this.model.create(obj);
   }
 
   async update(id, obj) {
-    try {
-      return await this.model.findByIdAndUpdate(id, obj, { new: true });
-    } catch (error) {
-      throw new Error(error);
-    }
+    return await this.model.findByIdAndUpdate(id, obj, { new: true });
   }
 
   async delete(id) {
-    try {
-      return await this.model.findByIdAndDelete(id);
-    } catch (error) {
-      throw new Error(error);
-    }
+    return await this.model.findByIdAndDelete(id);
   }
 
   async deleteAll() {
-    try {
-      return await this.model.deleteMany({});
-    } catch (error) {
-      throw new Error(error.message || 'Error deleting all records');
-    }
+    return await this.model.deleteMany({});
   }
 }

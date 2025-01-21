@@ -12,10 +12,10 @@ export default class ProductController extends BaseController {
   createProductWithImage = async (req, res) => {
     try {
       const file = req.file; // Archivo subido
-      const { title, price, description } = req.body; // Datos del formulario
+      const { title, price, description, code, status, category, stock, unitType } = req.body; // Datos del formulario
 
       // Validación de datos
-      if (!title || !price || !description || !file) {
+      if (!title || !price || !description || !file || !code || !status || !category || !stock || !unitType) {
         return res.status(400).send({ status: 'error', error: 'Faltan campos obligatorios' });
       }
 
@@ -28,6 +28,11 @@ export default class ProductController extends BaseController {
         price,
         description,
         image: imageUrl,
+        code,
+        status,
+        category,
+        stock,
+        unitType,
       });
 
       const result = await product.save();

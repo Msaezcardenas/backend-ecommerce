@@ -5,10 +5,6 @@ import UserRepository from '../repositories/user.repository.js';
 
 const userRepository = new UserRepository();
 
-// 3.- La capa de servicio contiene la lógica de negocio.
-//     Aquí podemos agregar más validaciones, por ejemplo,
-//     verificar si el usuario ya existe antes de crearlo.
-
 export default class UserService extends Services {
   constructor() {
     super(userRepository);
@@ -19,7 +15,7 @@ export default class UserService extends Services {
       const { email, password } = user;
       const { error } = userSchema.validate(user);
       if (error) throw new Error(error);
-      const existUser = await this.repository.getByEmail(email); // utiliza una funcion que se conecta a la base de datos
+      const existUser = await this.repository.getByEmail(email);
       if (existUser) throw new Error('usuario ya existe');
       if (!existUser) {
         const newUser = await this.repository.create({

@@ -7,9 +7,8 @@ export default class BaseController {
 
   getAll = async (req, res, next) => {
     try {
-      const data = await this.service.getAll();
-      req.logger.warning('Esto es un warn de prueba');
-      createResponse(res, 200, data);
+      const resources = await this.service.getAll();
+      createResponse(res, 200, resources, 'Resources retrieved successfully.');
     } catch (error) {
       next(error);
     }
@@ -19,8 +18,7 @@ export default class BaseController {
     try {
       const { id } = req.params;
       const data = await this.service.getById(id);
-      if (!data) createResponse(res, 404, data);
-      else createResponse(res, 200, data);
+      createResponse(res, 200, data, `Resource with ID ${id} retrieved successfully.`);
     } catch (error) {
       next(error);
     }
@@ -28,8 +26,9 @@ export default class BaseController {
 
   create = async (req, res, next) => {
     try {
-      const data = await this.service.create(req.body);
-      createResponse(res, 200, data);
+      const newResourceData = req.body;
+      const newResource = await this.service.create(newResourceData);
+      createResponse(res, 201, newResource, 'Resource has been successfully created.');
     } catch (error) {
       next(error);
     }
@@ -38,9 +37,9 @@ export default class BaseController {
   update = async (req, res, next) => {
     try {
       const { id } = req.params;
-      const data = await this.service.update(id, req.body);
-      if (!data) createResponse(res, 404, data);
-      else createResponse(res, 200, data);
+      const updatedData = req.body;
+      const updatedResource = await this.service.update(id, updatedData);
+      createResponse(res, 200, updatedResource, `The resource with ID ${id} has been successfully updated.`);
     } catch (error) {
       next(error);
     }
@@ -49,9 +48,8 @@ export default class BaseController {
   delete = async (req, res, next) => {
     try {
       const { id } = req.params;
-      const data = await this.service.delete(id);
-      if (!data) createResponse(res, 404, data);
-      else createResponse(res, 200, data);
+      await this.service.delete(id);
+      createResponse(res, 200, null, `The resource with the provided ${id} has been successfully deleted`);
     } catch (error) {
       next(error);
     }
@@ -59,9 +57,8 @@ export default class BaseController {
 
   deleteAll = async (req, res, next) => {
     try {
-      const data = await this.service.deleteAll();
-      if (!data) createResponse(res, 404, data);
-      else createResponse(res, 200, data);
+      const result = await this.service.deleteAll();
+      createResponse(res, 200, result, 'All resources have been successfully deleted.');
     } catch (error) {
       next(error);
     }

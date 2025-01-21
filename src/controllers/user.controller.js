@@ -4,9 +4,6 @@ import BaseController from './baseController.js';
 
 const userService = new UserService();
 
-//  2.- El controlador maneja las solicitudes HTTP relacionadas con la
-//      creación de usuarios y delega la lógica de negocio al servicio
-
 export default class UserController extends BaseController {
   constructor() {
     super(userService);
@@ -15,7 +12,7 @@ export default class UserController extends BaseController {
   register = async (req, res, next) => {
     try {
       const data = await this.service.register(req.body);
-      !data ? createResponse(res, 404, data) : createResponse(res, 200, data);
+      createResponse(res, 201, data, `The resource has been successfully created.`);
     } catch (error) {
       next(error);
     }

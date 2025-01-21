@@ -38,8 +38,10 @@ export const decodeToken = (req, res, next) => {
   });
 };
 
-export const createResponse = (res, statusCode, data) => {
-  return res.status(statusCode).json({ data });
+export const createResponse = (res, statusCode, data, message) => {
+  const response = { message }; // Solo incluye el mensaje por defecto
+  if (data) response.data = data; // Agrega data solo si está presente
+  return res.status(statusCode).json(response);
 };
 
 export const generateUniqueCode = () => {

@@ -10,9 +10,10 @@ export default class UserRouterCustom extends CustomRouter {
     this.post('/login', ['PUBLIC'], userController.login);
     this.post('/register', ['PUBLIC'], userController.register);
     this.get('/:id', ['ADMIN'], userController.getById);
-    this.get('/', ['ADMIN'], userController.getAll);
+    this.get('/', ['PUBLIC'], userController.getAll);
     this.post('/current', ['ADMIN'], userController.getCurrentUser);
     this.post('/', ['PUBLIC'], userController.create);
     this.put('/:id', ['PUBLIC'], userController.update);
+    this.delete('/:id', ['PUBLIC'], userController.delete);
   }
 }
