@@ -19,7 +19,7 @@ export const AppInit = (app) => {
   const hbs = create();
   app.use(
     cors({
-      origin: 'https://vegan-felino.vercel.app/',
+      origin: 'https://vegan-felino.vercel.app',
     }),
   );
   app.use(cookieParser(process.env.SECRET));
