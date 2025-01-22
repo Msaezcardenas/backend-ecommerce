@@ -12,7 +12,7 @@ export default class UserController extends BaseController {
   register = async (req, res, next) => {
     try {
       const data = await this.service.register(req.body);
-      createResponse(res, 201, data, `The resource has been successfully created.`);
+      createResponse(res, 201, data, 'User registered successfully.');
     } catch (error) {
       next(error);
     }

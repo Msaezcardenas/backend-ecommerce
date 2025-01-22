@@ -16,7 +16,6 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/perfil', invokePassport('jwt'), (req, res) => {
-  console.log(req.user.nombre);
   const nombre = req.user.nombre;
   res.render('perfil', { nombre });
 });
