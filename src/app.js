@@ -18,9 +18,9 @@ const swaggerOptions = {
   definition: {
     openapi: '3.0.1',
     info: {
-      title: 'Adopme api',
+      title: 'E-Commerce API',
       description:
-        'API para gestionar la adopción de mascotas, permitiendo a los usuarios explorar animales disponibles, registrarse, y gestionar solicitudes de adopción. Incluye endpoints para animales, usuarios y procesos de adopción.',
+        'Esta API es parte de un sistema de e-commerce diseñado para gestionar productos, usuarios, pedidos y más. Permite realizar operaciones CRUD, manejar la autenticación de usuarios mediante JWT, gestionar archivos (como imágenes de productos) y ofrecer una experiencia segura y escalable para los usuarios finales.',
     },
   },
   apis: [`${__dirname}/docs/**/*.yaml`],
