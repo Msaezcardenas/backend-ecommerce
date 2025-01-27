@@ -28,7 +28,7 @@ const swaggerOptions = {
 
 const specs = swaggerJSDoc(swaggerOptions);
 
-app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+app.use('/api-docs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 
 app.use('*', (req, res) => {
   res.status(404).json({ msg: 'not found' });
