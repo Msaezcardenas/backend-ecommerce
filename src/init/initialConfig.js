@@ -19,7 +19,7 @@ export const AppInit = (app) => {
   const hbs = create();
   app.use(
     cors({
-      origin: 'http://localhost:5173/',
+      origin: 'https://vegan-felino.vercel.app',
     }),
   );
   app.use(cookieParser(process.env.SECRET));
