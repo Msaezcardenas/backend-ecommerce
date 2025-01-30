@@ -1,5 +1,4 @@
 import express from 'express';
-// import { __dirname } from './utils/utils.js';
 import { AppInit } from './init/initialConfig.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
@@ -23,8 +22,10 @@ const swaggerOptions = {
         'Esta API es parte de un sistema de e-commerce diseñado para gestionar productos, usuarios, pedidos y más. Permite realizar operaciones CRUD, manejar la autenticación de usuarios mediante JWT, gestionar archivos (como imágenes de productos) y ofrecer una experiencia segura y escalable para los usuarios finales.',
     },
   },
-  apis: [`${__dirname}/docs/**/*.yaml`],
+  apis: [`${__dirname}/docs/*.yaml`],
 };
+
+console.log('Archivos detectados por Swagger:', (__dirname, 'docs/**/*.yaml'));
 
 const specs = swaggerJSDoc(swaggerOptions);
 

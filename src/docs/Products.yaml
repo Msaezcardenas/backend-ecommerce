@@ -1,0 +1,223 @@
+openapi: 3.0.1
+paths:
+  /api/products/:
+    get:
+      summary: Traer todos los productos
+      tags:
+        - Products
+      responses:
+        '200':
+          description: 'Resources retrieved successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '500':
+          description: 'Ocurrio un error a nivel de base de datos'
+    post:
+      summary: Agregar nuevo producto
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/updateProduct'
+      responses:
+        '201':
+          description: Resource has been successfully created.",
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource has been successfully created.
+                  data:
+                    $ref: '#/components/schemas/Products'
+        '400':
+          description: Failed to create the resource.
+  /api/products/{pid}:
+    get:
+      summary: Obtiene un producto por su id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: id del producto
+          schema:
+            $type: String
+            example: '6787bb46d124d75c582e4515'
+      responses:
+        '200':
+          description: Resource with ID 6787bb46d124d75c582e4515 retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+    put:
+      summary: Actualiza un producto
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: id del producto
+          schema:
+            $type: String
+            example: '6787bb46d124d75c582e4515'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/updateProduct'
+      responses:
+        '200':
+          description: The resource with ID {pid} has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+    delete:
+      summary: elimina a  un producto por su ID
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: id del producto
+          schema:
+            $type: String
+            example: 63f0b95f1e6e5a3f7c876d9c
+      responses:
+        '200':
+          description: 'The resource with the provided uid has been successfully deleted'
+        '400':
+          description: The provided ID is not in a valid format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: The resource with the provided ID has been successfully deleted.
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 404
+                  message:
+                    type: string
+                    example: Resource with ID {pid} not found.
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: An unexpected error occurred on the server.
+
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: id de mongo
+        title:
+          type: String
+          description: Titulo del producto
+        stock:
+          type: Number
+          description: Cantidad de stock
+        description:
+          type: String
+          description: descripcion del producto
+        code:
+          type: String
+          description: codigo
+        price:
+          type: Number
+          description: precio del producto
+        status:
+          type: Boolean
+          description: estado del producto
+        category:
+          type: String
+          description: categoria del producto
+        unitType:
+          type: String
+          description: unidad del producto
+        image:
+          type: String
+          description: imagen
+      example:
+        _id: ObjectId("453k5nk34jn5as")
+        title: Seitan
+        stock: 22
+        description: deliciosa preparacion vegana, alta en proteina
+        code: seitan-st
+        price: 6500,
+        status: true,
+        category: con gluten,
+        unitType: 1kilo,
+        image: /seitan.png,
+  requestBodies:
+    updateProduct:
+      type: object
+      properties:
+        title:
+          type: String
+          description: Titulo del producto
+        stock:
+          type: Number
+          description: stock del producto
+        description:
+          type: String
+          description: descripcion
+        code:
+          type: String
+          description: codigo
+        price:
+          type: Number
+          description: 6500
+        status:
+          type: Boolean
+          description: true
+        category:
+          type: String
+          description: con gluten
+        unitType:
+          type: String
+          description: 1kilo
+        image:
+          type: String
+          description: seitan.png
+      example:
+        title: Seitan
+        stock: 22
+        description: delicioso seitan
+        price: 6500

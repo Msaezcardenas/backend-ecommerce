@@ -8,10 +8,10 @@ export default class ProductRouterCustom extends CustomRouter {
     const productController = new ProductController();
     this.get('/', ['PUBLIC'], addLogger, productController.getAll);
     this.get('/:id', ['PUBLIC'], productController.getById);
-    this.post('/', ['PUBLIC'], productController.create);
+    this.post('/', ['ADMIN'], productController.create);
     this.put('/:id', ['PUBLIC'], productController.update);
     this.delete('/:id', ['PUBLIC'], productController.delete);
     this.delete('/', ['PUBLIC'], productController.deleteAll);
-    this.post('/withimage', ['PUBLIC'], uploader.single('image'), productController.createProductWithImage);
+    this.post('/withimage', ['ADMIN'], uploader.single('image'), productController.createProductWithImage);
   }
 }
